@@ -1,47 +1,75 @@
-<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Collate Chat</title>
-  </head>
-  <body>
-    <h1>Welcome to Collate Chat</h1>
+<head>
+<!DOCTYPE html>
+  <meta charset="UTF-8" />
+  <title>Collate Chat Rooms</title>
+</head>
+<body>
+  <h1>Collate Chat</h1>
 
-    <div
-      id="chat-box"
-      style="border: 1px solid gray; height: 200px; overflow: auto; padding: 10px; margin-bottom: 10px;"
-    >
-      <!-- Messages will appear here -->
-    </div>
+  <label for="room-select">Choose a chat room:</label>
+  <select id="room-select">
+    <option value="general"># General</option>
+    <option value="support"># Support</option>
+    <option value="random"># Random</option>
+  </select>
 
-    <input
-      type="text"
-      id="chat-input"
-      placeholder="Type your message here..."
-      style="width: 70%;"
-    />
-    <button onclick="sendMessage()">Send</button>
+  <div id="chat-box" style="border:1px solid gray; height:200px; overflow:auto; padding:10px; margin-top:10px; margin-bottom:10px;">
+    <!-- Messages appear here -->
+  </div>
 
-    <script>
-      const chatBox = document.getElementById("chat-box");
-      const input = document.getElementById("chat-input");
+  <input type="text" id="chat-input" placeholder="Type your message..." style="width: 70%;" />
+  <button onclick="sendMessage()">Send</button>
 
-      function sendMessage() {
-        const msg = input.value.trim();
-        if (msg !== "") {
-          const message = document.createElement("div");
-          message.textContent = "You: " + msg;
-          chatBox.appendChild(message);
-          input.value = "";
-          chatBox.scrollTop = chatBox.scrollHeight;
-        }
+  <script>
+    const chatBox = document.getElementById("chat-box");
+    const input = document.getElementById("chat-input");
+    const roomSelect = document.getElementById("room-select");
+
+    // Each chat room has its own array of messages
+    const rooms = {
+      general: [],
+      support: [],
+      random: []
+    };
+
+    // Update the chat display when the room changes
+    roomSelect.addEventListener("change", () => {
+      displayMessages();
+    });
+
+    function sendMessage() {
+      const msg = input.value.trim();
+      if (msg !== "") {
+        const room = roomSelect.value;
+        rooms[room].push("You: " + msg); // Save the message
+        input.value = "";
+        displayMessages();
       }
+    }
 
-      input.addEventListener("keypress", function (e) {
-        if (e.key === "Enter") {
-          sendMessage();
-        }
+    function displayMessages() {
+      const room = roomSelect.value;
+      chatBox.innerHTML = ""; // Clear old messages
+
+      rooms[room].forEach(msg => {
+        const p = document.createElement("p");
+        p.textContent = msg;
+        chatBox.appendChild(p);
       });
-    </script>
-  </body>
+
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    // Allow pressing Enter to send messages
+    input.addEventListener("keypress", function(e) {
+      if (e.key === "Enter") {
+        sendMessage();
+      }
+    });
+
+    // Initial display
+    displayMessages();
+  </script>
+</body>
 </html>
