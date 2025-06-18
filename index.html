@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;head&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;title&gt;FlightOS Chat&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/head&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;body&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h1&gt;Welcome to FlightOS Chat&lt;/h1&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="chat-box" style="border:1px solid gray; height:200px; overflow:auto; padding:10px; margin-bottom:10px;"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;!-- Messages will show up here --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;input type="text" id="chat-input" placeholder="Type your message here..." style="width: 70%;" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button onclick="sendMessage()"&gt;Send&lt;/button&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const chatBox = document.getElementById("chat-box");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const input = document.getElementById("chat-input");</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>function sendMessage() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const msg = input.value.trim();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (msg !== "") {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>const p = document.createElement("p");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>p.textContent = "You: " + msg;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>chatBox.appendChild(p);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>input.value = "";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>chatBox.scrollTop = chatBox.scrollHeight;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>input.addEventListener("keypress", function (e) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (e.key === "Enter") {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>sendMessage();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+</body>
+</html>
