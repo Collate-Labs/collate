@@ -14,6 +14,12 @@
     <option value="random"># Random</option>
   </select>
 
+  <div style="margin:10px 0;">
+  <label for="new-room-input">Create new room:</label>
+  <input type="text" id="new-room-input" placeholder="Room name" />
+  <button onclick="createRoom()">Create Room</button>
+</div>
+
   <div id="chat-box" style="border:1px solid gray; height:200px; overflow:auto; padding:10px; margin-top:10px; margin-bottom:10px;">
     <!-- Messages appear here -->
   </div>
@@ -68,6 +74,38 @@
       }
     });
 
+  function createRoom() {
+  const newRoomInput = document.getElementById("new-room-input"); // Finds the input box
+  let roomName = newRoomInput.value.trim(); // Gets what the user typed, removes extra spaces
+
+  if (roomName === "") return; // If nothing was typed, do nothing
+
+  // Make a safe room name (no spaces or special symbols)
+  const roomValue = roomName.toLowerCase().replace(/\W+/g, "-");
+
+  // If the room already exists, show a message and stop
+  if (rooms[roomValue]) {
+    alert("Room already exists!");
+    return;
+  }
+
+  // Add the new room to the list of rooms
+  rooms[roomValue] = [];
+
+  // Add the new room to the dropdown menu
+  const option = document.createElement("option");
+  option.value = roomValue;
+  option.textContent = `# ${roomName}`;
+  roomSelect.appendChild(option);
+
+  // Switch to the new room and show messages (it will be empty at first)
+  roomSelect.value = roomValue;
+  displayMessages();
+
+  // Clear the input box
+  newRoomInput.value = "";
+}
+    
     // Initial display
     displayMessages();
   </script>
